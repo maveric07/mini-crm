@@ -153,6 +153,7 @@ exports.addOrder = async (req, res) => {
     await order.save();
     res.status(201).json({ message: "Order added successfully", order });
   } catch (error) {
+    console.error("Error in addOrder:", error);
     res
       .status(500)
       .json({ message: "Failed to add order", error: error.message });
@@ -200,6 +201,7 @@ exports.getOrders = async (req, res) => {
     const orders = await Order.find().populate("customer_id");
     res.status(200).json(orders);
   } catch (error) {
+    console.error("Error in getOrders:", error);
     res.status(500).json({ message: "Failed to retrieve orders", error });
   }
 };
